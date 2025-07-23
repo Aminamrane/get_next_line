@@ -68,3 +68,28 @@ int find_newline(const char *s){
     return -1;
 
 }
+
+char *ft_substr(char *s, size_t start, int len) {
+
+    char *stock;
+    int i = 0;
+
+    if (start >= ft_strlen(s)) {
+        stock = malloc(1);
+        if (!stock){
+            return NULL;
+        }
+        stock[0] = '\0';
+        return stock;
+    }
+
+    stock = malloc(len + 1);
+
+    while (i < len && s[start + i] != '\0') {
+        stock[i] = s[start + i];
+        i++;
+    }
+
+    stock[i] = '\0';
+    return stock;
+}
