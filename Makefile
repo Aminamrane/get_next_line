@@ -1,8 +1,8 @@
 # Makefile
 
-CC = clang
-CFLAGS = -Wall -Wextra -Werror -I get_next_line/include -DBUFFER_SIZE=$(BUFFER_SIZE)
-SRCS = get_next_line/src/get_next_line.c get_next_line/src/utils.c main.c
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -I include -DBUFFER_SIZE=42
+SRCS = src/get_next_line.c src/utils.c main.c
 OBJS = $(SRCS:.c=.o)
 NAME = gnl
 
