@@ -125,3 +125,19 @@ else
     line[i] = '\0';
     return line;
 }
+
+char *clean_leftover(char *s) {
+
+    int index;
+
+    index = find_newline(s);
+
+    if (index == -1) {
+        return NULL;
+    }
+
+    return ft_substr(s, index + 1, ft_strlen(s) - (index + 1));
+
+        
+
+}

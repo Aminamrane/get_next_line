@@ -4,28 +4,28 @@
 
 
 int main(void) {
-    char *test1 = "Bonjour\nComment ça va ?";
-    char *test2 = "Ligne sans retour";
-    char *test3 = "Juste\n";
-    char *test4 = "\nCommence par newline";
+    char *test1 = "Bonjour\nSalut";
+    char *test2 = "Sans retour";
+    char *test3 = "\nDirect";
+    char *test4 = "End\n";
 
-    char *line;
+    char *result;
 
-    line = extract_line(test1);
-    printf("Test 1: \"%s\"\n", line);
-    free(line);
+    result = clean_leftover(test1);
+    printf("Test 1: \"%s\"\n", result);
+    free(result);
 
-    line = extract_line(test2);
-    printf("Test 2: \"%s\"\n", line);
-    free(line);
+    result = clean_leftover(test2);
+    printf("Test 2: \"%s\"\n", result ? result : "(null)");
+    free(result);
 
-    line = extract_line(test3);
-    printf("Test 3: \"%s\"\n", line);
-    free(line);
+    result = clean_leftover(test3);
+    printf("Test 3: \"%s\"\n", result);
+    free(result);
 
-    line = extract_line(test4);
-    printf("Test 4: \"%s\"\n", line);
-    free(line);
+    result = clean_leftover(test4);
+    printf("Test 4: \"%s\"\n", result);
+    free(result);
 
     return 0;
 }
