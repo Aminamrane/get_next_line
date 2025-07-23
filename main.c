@@ -5,13 +5,10 @@
 
 int main(void)
 {
-    char *s1 = "hello ";
-    char *s2 = "world";
-    char *result = ft_strjoin(s1, s2);
+    char *s = "hello\n my name is Amine or Youcef";
+    int i = 0;
 
-    printf("Résultat : %s\n", result);
-
-    free(result);
-
+    i = find_newline(s);
+    printf("resultat = %d\n", i);
     return 0;
 }

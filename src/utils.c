@@ -52,3 +52,19 @@ char *ft_strjoin(char *s1, char *s2) {
     return line;
 
 }
+
+int find_newline(const char *s){
+
+    int i = 0;
+
+    while (s[i] != '\0') {
+
+        if (s[i] == '\n') {
+            return i;
+        }
+        i++;
+    } 
+
+    return -1;
+
+}
