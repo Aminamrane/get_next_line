@@ -93,3 +93,35 @@ char *ft_substr(char *s, size_t start, int len) {
     stock[i] = '\0';
     return stock;
 }
+
+char *extract_line(char *s) {
+
+    char *line;
+    int i = 0;
+    int index;
+
+    index = find_newline(s);
+
+if (index == -1)
+{
+    line = malloc(ft_strlen(s) + 1);
+    while (s[i])
+    {
+        line[i] = s[i];
+        i++;
+    }
+}
+else
+{
+    line = malloc(index + 2);
+   
+    while (i <= index)
+    {
+        line[i] = s[i];
+        i++;
+    }
+}
+
+    line[i] = '\0';
+    return line;
+}
