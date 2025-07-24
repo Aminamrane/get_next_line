@@ -1,23 +1,30 @@
 # Makefile
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I include -DBUFFER_SIZE=42
-
-SRCS = src/get_next_line.c src/utils.c main.c
-OBJS = $(SRCS:.c=.o)
+CFLAGS = -Wall -Wextra -Werror -I include -D BUFFER_SIZE=42
 
 NAME = gnl
+
+SRC_DIR = src
+OBJ_DIR = obj
+
+SRCS = $(SRC_DIR)/get_next_line.c $(SRC_DIR)/utils.c main.c
+OBJS = $(SRCS:.c=.o)
+OBJS := $(patsubst %.o,$(OBJ_DIR)/%.o,$(notdir $(OBJS)))
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)

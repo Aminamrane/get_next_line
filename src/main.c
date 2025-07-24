@@ -8,30 +8,26 @@
 
 int main(int argc, char **argv)
 {
-
-    int fd = open(argv[1], O_RDONLY);
+    int fd;
     char *line;
 
     if (argc != 2)
-    {
-        write(2, "User: ./gnl <file.txt>\n", 24);
         return 1;
-    }
 
-    if (fd == -1)
-    {
-        write(2, "Erreur d'ouverture\n", 19);
+    fd = open(argv[1], O_RDONLY);
+    if (fd < 0)
         return 1;
-    }
 
     while ((line = get_next_line(fd)) != NULL)
     {
         size_t i = 0;
         while (line[i])
             i++;
-        write(1, line, i); 
+        write(1, line, i);
         free(line);
     }
+
+    write(1, "\n", 1);
 
     close(fd);
     return 0;

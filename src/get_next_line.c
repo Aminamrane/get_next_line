@@ -14,6 +14,10 @@ char *get_next_line(int fd)
 
     buffer = malloc(BUFFER_SIZE + 1);
 
+    if (fd < 0 || BUFFER_SIZE <= 0 ) {
+        return NULL;
+    }
+
     if (!buffer)
     return NULL;
 
@@ -25,6 +29,12 @@ char *get_next_line(int fd)
         tmp = str;
         str = ft_strjoin(str, buffer);
         free(tmp);    
+    }
+
+    if (bytes_read == 0 && (!str || str[0] == '\0')) {
+        free(buffer);
+        free(str);
+        return NULL;
     }
 
     line = extract_line(str);
