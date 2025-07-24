@@ -8,23 +8,28 @@
 
 int main(int argc, char **argv)
 {
-    if (argc != 2)
-    {
-        write(2, "Usage: ./gnl <fichier>\n", 24);
-        return 1;
-    }
 
     int fd = open(argv[1], O_RDONLY);
-    if (fd == -1)
+    char *line;
+
+    if (argc != 2)
     {
-        perror("Erreur d'ouverture");
+        write(2, "User: ./gnl <file.txt>\n", 24);
         return 1;
     }
 
-    char *line;
+    if (fd == -1)
+    {
+        write(2, "Erreur d'ouverture\n", 19);
+        return 1;
+    }
+
     while ((line = get_next_line(fd)) != NULL)
     {
-        printf("Ligne : %s", line);
+        size_t i = 0;
+        while (line[i])
+            i++;
+        write(1, line, i); 
         free(line);
     }
 
